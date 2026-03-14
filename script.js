@@ -7,6 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(response => response.text())
     .then(data => {
       headerPlaceholder.innerHTML = data;
+
+      // Agora o header existe no DOM, então podemos ativar o menu
+      const menuToggle = document.getElementById("menu-toggle");
+      const navbar = document.getElementById("navbar");
+
+      if (menuToggle && navbar) {
+        menuToggle.addEventListener("click", () => {
+          console.log("Clique detectado!");
+          menuToggle.classList.toggle("active");
+          navbar.classList.toggle("active");
+        });
+      }
     })
     .catch(err => console.error("Erro ao carregar o header:", err));
 });
@@ -32,16 +44,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navbar = document.getElementById("navbar");
-
-  if (menuToggle && navbar) {
-    menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active");
-      navbar.classList.toggle("active");
-    });
-  }
 });
